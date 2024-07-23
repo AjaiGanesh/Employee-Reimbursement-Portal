@@ -1,0 +1,22 @@
+<!-- app/views/departments/_form.html.erb -->
+<%= form_with(model: department, local: true) do |form| %>
+  <% if department&.errors&.any? %>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(department.errors.count, "error") %> prohibited this department from being saved:</h4>
+      <ul>
+      <% department&.errors&.full_messages&.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control', required: "required" %>
+  </div>
+  <br>
+  <div class="form-group">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

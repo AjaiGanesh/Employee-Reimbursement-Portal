@@ -3,7 +3,8 @@ class BillsController < ApplicationController
 
   # GET /bills
   def index
-    @bills = Bill.all
+    bills = Bill.all
+    @bills = {total: bills.sum(:amount), data: bills}
   end
 
   # GET /bills/1
@@ -27,7 +28,6 @@ class BillsController < ApplicationController
     if @bill.save
       redirect_to bills_path, notice: "Bill was created Successfully"
     else
-      @employees = Employee.all
       render "new"
     end
   end

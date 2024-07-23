@@ -1,5 +1,6 @@
 class EmployeesController < ApplicationController
   before_action :set_employee, only: %i[ show edit update destroy ]
+  before_action :set_departments, only: %i[ new create edit]
 
   # GET /employees
   def index
@@ -12,13 +13,12 @@ class EmployeesController < ApplicationController
 
   # GET /employees/new
   def new
+    Rails.logger.info "Calling new condition"
     @employee = Employee.new
-    @departments = Department.all
   end
 
   # GET /employees/1/edit
   def edit
-    @departments = Department.all
   end
 
   # POST /employees
@@ -27,10 +27,9 @@ class EmployeesController < ApplicationController
     if @employee.save
       redirect_to root_path, notice: "Employee was successfully created"
     else
-      @departments = Department.all
-      render "new"
+      Rails.logger.info "Calling create error condition"
+      render :new
     end
-
   end
 
   # PATCH/PUT /employees/1
@@ -53,6 +52,10 @@ class EmployeesController < ApplicationController
     def set_employee
       @employee = Employee.find_by(id: params[:id])
       raise "Employee not found" unless @employee.present?
+    end
+
+    def set_departments
+      @departments = Department.all
     end
 
     # Only allow a list of trusted parameters through.

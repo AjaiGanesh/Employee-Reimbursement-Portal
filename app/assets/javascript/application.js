@@ -2,3 +2,4 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+//= require rails-ujs

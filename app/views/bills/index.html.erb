@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-md-12">
     <%= link_to 'New Bill', new_bill_path, class: 'btn btn-success mb-3' %>
-    <h4>Total Amount: <%= 0 %></h2>
+    <h4>Total Amount: <%= @bills.dig(:total)%></h2>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @bills.each do |bill| %>
+        <% @bills.dig(:data).each do |bill| %>
           <tr>
             <td><%= bill.bill_type %></td>
             <td><%= bill.amount %></td>
@@ -23,9 +23,8 @@
             <td><%= bill.employee.first_name + " " + bill.employee.last_name%></td>
             <td><%= bill.employee.department.name %></td>
             <td>
-              <%# <%= link_to 'Show', bill_path(employee), class: 'btn btn-info btn-sm' %>
               <%= link_to 'Edit', edit_bill_path(bill), class: 'btn btn-warning btn-sm' %>
-              <%= link_to 'Delete', bill_path(bill),  data: { "turbo-method": :delete, confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+              <%= link_to 'Delete', bill, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
             </td>
           </tr>
         <% end %>

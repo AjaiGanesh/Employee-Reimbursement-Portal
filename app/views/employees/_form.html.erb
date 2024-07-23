@@ -1,40 +1,39 @@
 <!-- app/views/employees/_form.html.erb -->
-<%= form_with(model: employee, local: true) do |form| %>
+<%= form_with model: employee, local: true do |form| %>
   <% if employee.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
-
+    <div class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h4>
       <ul>
-      <% employee.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% employee.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="form-group">
     <%= form.label :first_name %>
-    <%= form.text_field :first_name, class: 'form-control' %>
+    <%= form.text_field :first_name, class: 'form-control', required: "required", pattern: '^[a-zA-Z]{2,20}$', title: "First name is required and should be between 2 and 20 alphabetic characters." %>
   </div>
 
   <div class="form-group">
     <%= form.label :last_name %>
-    <%= form.text_field :last_name, class: 'form-control' %>
+    <%= form.text_field :last_name, class: 'form-control', pattern: '^[a-zA-Z]{2,20}$', title: "Last name is required and should be between 2 and 20 alphabetic characters." %>
   </div>
 
   <div class="form-group">
     <%= form.label :email %>
-    <%= form.email_field :email, class: 'form-control' %>
+    <%= form.email_field :email, class: 'form-control', required: "required", pattern: '^[^@\s]+@[^@\s]+$', disabled: !form.object.new_record?, title: "Please enter a valid email address." %>
   </div>
 
   <div class="form-group">
     <%= form.label :designation %>
-    <%= form.text_field :designation, class: 'form-control' %>
+    <%= form.text_field :designation, class: 'form-control', required: "required", pattern: '^[a-zA-Z]{2,}(?: [a-zA-Z]+){0,2}$', title: "Designation is required and should be alphabetic characters." %>
   </div>
 
   <div class="form-group">
     <%= form.label :department_id, 'Department' %>
-    <%= form.collection_select :department_id, @departments, :id, :name, {}, class: 'form-control' %>
+    <%= form.collection_select :department_id, @departments || [], :id, :name, {}, class: 'form-control' %>
   </div>
   <br>
   <div class="form-group">
