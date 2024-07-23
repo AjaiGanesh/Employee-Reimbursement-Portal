@@ -4,6 +4,10 @@
 
 * Rails version : Rails 7.0.8.4
 
+* Git Clone: git clone git@github.com:AjaiGanesh/Employee-Reimbursement-Portal.git; cd employee_reimbursement_portal
+
+* Dependencies: bundle install
+
 * Database Configuration: mysql; set the database username and password using EDITOR=nano rails credentials:edit
 
 * Database creation: rails db:create
