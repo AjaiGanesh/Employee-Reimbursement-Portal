@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version : ruby 3.3.0
 
-Things you may want to cover:
+* Rails version : Rails 7.0.8.4
 
-* Ruby version
+* Database Configuration: mysql; set the database username and password using EDITOR=nano rails credentials:edit
 
-* System dependencies
+* Database creation: rails db:create
 
-* Configuration
+* Database initialization: rails db:migrate
 
-* Database creation
+* Database seed: rails db:seed
 
-* Database initialization
+* Server start: rails s
 
-* How to run the test suite
+- A comprehensive web application built with Ruby on Rails 7 for managing employee information and handling reimbursement requests. This application allows users to create, view, edit, and delete employee records and associated departments. It also includes form validations to ensure the integrity and accuracy of the data entered.
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
